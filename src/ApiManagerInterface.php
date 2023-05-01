@@ -34,6 +34,12 @@ interface ApiManagerInterface
     public function getSubscriber(string $email, int $groupId = null);
 
     /**
+     * @param int $groupId
+     * @return mixed
+     */
+    public function getSubscribers(int $groupId);
+
+    /**
      * Sets the active status of a subscriber.
      *
      * @param string $email

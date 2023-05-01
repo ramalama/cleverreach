@@ -59,6 +59,13 @@ class ApiManager implements ApiManagerInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getSubscribers(int $groupId){
+        return $this->adapter->action('get', "/v3/groups.json/{$groupId}/receivers");
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setSubscriberStatus(string $email, int $groupId, $active = true)
