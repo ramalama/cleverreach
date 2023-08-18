@@ -14,7 +14,7 @@ class AdapterTest extends TestCase
      */
     protected static $httpAdapter;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$httpAdapter = new HttpAdapter(
             [

@@ -1,6 +1,6 @@
 <?php
 
-namespace rdoepner\CleverReach\Tests\Http;
+namespace rdoepner\CleverReach\Tests;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -20,7 +20,7 @@ class ApiManagerTest extends TestCase
      */
     protected static $groupId;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $httpAdapter = new HttpAdapter(
             [
@@ -95,15 +95,10 @@ class ApiManagerTest extends TestCase
         );
 
         $this->assertArrayHasKey('error', $response);
-        $this->assertArraySubset(
-            $response,
-            [
-                'error' => [
-                    'code' => 404,
-                    'message' => 'Not Found: invalid receiver',
-                ],
-            ]
-        );
+        $this->assertArrayHasKey('code', $response['error']);
+        $this->assertArrayHasKey('message', $response['error']);
+        $this->assertEquals(404, $response['error']['code']);
+        $this->assertEquals('Not Found: invalid receiver', $response['error']['message']);
     }
 
     public function testSetSubscriberStatus()
@@ -156,14 +151,11 @@ class ApiManagerTest extends TestCase
         );
 
         $this->assertArrayHasKey('error', $response);
-        $this->assertArraySubset(
-            $response,
-            [
-                'error' => [
-                    'code' => 404,
-                    'message' => 'Not Found: invalid receiver',
-                ],
-            ]
-        );
+
+        $this->assertArrayHasKey('code', $response['error']);
+        $this->assertEquals(404, $response['error']['code']);
+
+        $this->assertArrayHasKey('message', $response['error']);
+        $this->assertEquals('Not Found: invalid receiver', $response['error']['message']);
     }
 }
