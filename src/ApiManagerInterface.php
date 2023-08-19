@@ -117,6 +117,23 @@ interface ApiManagerInterface
     public function getAttributes(int $groupId);
 
     /**
+     * Creates a new global or group attribute
+     * @param string $name name for internal use.
+     * @param string $type type of data (text|number|gender|date)
+     * @param int $groupId ID of group - leave empty for global attributes
+     * @param string $description
+     * @param string $preview_value
+     * @param string $default_value
+     * @return mixed
+     */
+    public function createAttribute(string $name, string $type, int $groupId = 0, string $description = "", string $previewValue ="",string $defaultValue="" );
+
+    /**
+     * @param int $id attribute id
+     * @return mixed
+     */
+    public function deleteAttribute(int $id);
+    /**
      * Update the attributes of a subscriber.
      *
      * @param int    $poolId

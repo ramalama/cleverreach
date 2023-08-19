@@ -158,4 +158,14 @@ class ApiManagerTest extends TestCase
         $this->assertArrayHasKey('message', $response['error']);
         $this->assertEquals('Not Found: invalid receiver', $response['error']['message']);
     }
+
+    public function testCreateAndDeleteAttribute(){
+        $response = self::$apiManager->createAttribute("testAttribute","text", self::$groupId);
+        $this->assertArrayHasKey('id', $response);
+        $this->assertEquals('testattribute', $response['name']);
+        $this->assertEquals(self::$groupId, $response['group_id']);
+
+        $delResponse = self::$apiManager->deleteAttribute($response["id"]);
+        $this->assertTrue($delResponse);
+    }
 }

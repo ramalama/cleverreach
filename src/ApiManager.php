@@ -168,6 +168,27 @@ class ApiManager implements ApiManagerInterface
     /**
      * {@inheritdoc}
      */
+    public function createAttribute(string $name, string $type, int $groupId = 0, string $description = "", string $previewValue = "", string $defaultValue = "")
+    {
+        return $this->adapter->action("post","/v3/attributes.json", [
+            "name"=>$name,
+            "type"=>$type,
+            "group_id"=>$groupId,
+            "description"=>$description,
+            "preview_value"=>$previewValue,
+            "default_value"=>$defaultValue
+        ]);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteAttribute(int $id)
+    {
+        return $this->adapter->action('delete', "/v3/attributes.json/{$id}");
+    }
+    /**
+     * {@inheritdoc}
+     */
     public function updateSubscriberAttributes(int $poolId, int $attributeId, string $value)
     {
         return $this->adapter->action(
