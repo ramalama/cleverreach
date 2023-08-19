@@ -3,8 +3,10 @@
 /.idea/
 /.ddev/
 /.php_cs
-/.php_cs.cache
 /composer.lock
 /phpunit.xml
 /var/
 /vendor/
+/.phpunit.cache*
+/tests/var/
+*.cache
