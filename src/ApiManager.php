@@ -89,8 +89,12 @@ class ApiManager implements ApiManagerInterface
     /**
      * @inheritDoc
      */
-    public function getSubscribers(int $groupId){
-        return $this->adapter->action('get', "/v3/groups.json/{$groupId}/receivers");
+    public function getSubscribers(int $groupId, int $filterId = null){
+        if (!is_null($filterId)) {
+            return $this->adapter->action('get', "/v3/groups.json/{$groupId}/filters/{$filterId}/receivers?pagesize=5000");
+        }else {
+            return $this->adapter->action('get', "/v3/groups.json/{$groupId}/receivers?pagesize=5000");
+        }
     }
 
     /**

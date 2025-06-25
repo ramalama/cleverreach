@@ -60,9 +60,10 @@ interface ApiManagerInterface
 
     /**
      * @param int $groupId
+     * @param ?int $filterId Give an id of the segment (ctfid in Frontend URI) if you want only that part of the group.
      * @return mixed
      */
-    public function getSubscribers(int $groupId);
+    public function getSubscribers(int $groupId, ?int $filterId = null);
 
     /**
      * Sets the active status of a subscriber.
