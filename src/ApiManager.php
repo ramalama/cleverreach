@@ -98,6 +98,16 @@ class ApiManager implements ApiManagerInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getSubscribersTotalCount(int $groupId, ?int $filterId = null){
+        if (is_null($filterId)) {
+            return $this->adapter->action('get', "/v3/groups.json/{$groupId}/stats")["total_count"];
+        }
+        return $this->adapter->action('get', "/v3/groups.json/{$groupId}/filters/{$filterId}/stats")["total_count"];
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setSubscriberStatus(string $email, int $groupId, $active = true)
